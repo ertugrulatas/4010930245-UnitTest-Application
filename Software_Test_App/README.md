@@ -1,17 +1,22 @@
 # Software Test App
 
-Bu proje, Yazılım Kalite Güvence Testi dersi kapsamında geliştirilen bir API uygulamasıdır. Ürün yönetimi (CRUD) işlemlerini gerçekleştiren bir RESTful API sunar.
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-blue) ![Codecov](https://img.shields.io/badge/Codecov-Coverage-brightgreen)
 
-## Kullanılan Teknolojiler
+## Proje Açıklaması
 
-- **Dil:** C# (.NET 10.0)
-- **Veritabanı:** SQLite
-- **API Dokümantasyonu:** Swagger UI
-- **Test Çerçevesi:** xUnit
+Bu proje, Yazılım Kalite Güvence Testi dersi kapsamında geliştirilmiş bir .NET Core Web API uygulamasıdır. Proje, çeşitli veri modelleri üzerinde CRUD işlemleri gerçekleştiren ve test edilebilir bir yapı sunan bir backend servisidir.
+
+### Kullanılan Teknolojiler
+
+- C#
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite Veritabanı
+- Swagger UI
 
 ## Kurulum Talimatları
 
-Projenin çalıştırılabilmesi için bilgisayarınızda .NET SDK yüklü olmalıdır.
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
 
 1.  Repoyu klonlayın:
     ```bash
@@ -24,44 +29,66 @@ Projenin çalıştırılabilmesi için bilgisayarınızda .NET SDK yüklü olmal
     dotnet restore
     ```
 
-3.  Veritabanını oluşturun:
+3.  Veritabanını güncelleyin:
     ```bash
-    dotnet ef database update --project Software_Test_App/Software_Test_App.csproj
+    cd Software_Test_App
+    dotnet ef database update
     ```
 
-4.  Projeyi çalıştırın:
+4.  Uygulamayı çalıştırın:
     ```bash
-    dotnet run --project Software_Test_App/Software_Test_App.csproj
+    dotnet run
     ```
 
 ## API Endpointleri
 
-| Metot  | Endpoint           | Açıklama                   |
-| :----- | :----------------- | :------------------------- |
-| GET    | `/api/products`    | Tüm ürünleri listeler      |
-| GET    | `/api/products/{id}`| ID'ye göre ürün getirir    |
-| POST   | `/api/products`    | Yeni ürün ekler            |
-| PUT    | `/api/products/{id}`| Mevcut ürünü günceller     |
-| DELETE | `/api/products/{id}`| Ürünü siler                |
+Aşağıda uygulamada bulunan temel API endpointleri listelenmiştir:
 
-## Swagger / OpenAPI Dokümantasyonu
+### Users
+- `GET /api/Users` - Tüm kullanıcıları listeler
+- `GET /api/Users/{id}` - Belirli bir kullanıcıyı getirir
+- `POST /api/Users` - Yeni kullanıcı oluşturur
+- `PUT /api/Users/{id}` - Kullanıcıyı günceller
+- `DELETE /api/Users/{id}` - Kullanıcıyı siler
 
-Uygulama çalışırken Swagger UI arayüzüne aşağıdaki adresten erişebilirsiniz:
+### Entries
+- `GET /api/Entries` - Tüm girdileri listeler
+- `GET /api/Entries/{id}` - Belirli bir girdiyi getirir
+- `POST /api/Entries` - Yeni girdi oluşturur
+- `PUT /api/Entries/{id}` - Girdiyi günceller
+- `DELETE /api/Entries/{id}` - Girdiyi siler
 
-- **URL:** `http://localhost:5000/swagger/index.html` (veya port numarasına göre değişebilir, örn: `https://localhost:7198/swagger/index.html`)
+### Reviews
+- `GET /api/Reviews` - Tüm değerlendirmeleri listeler
+- `GET /api/Reviews/{id}` - Belirli bir değerlendirmeyi getirir
+- `POST /api/Reviews` - Yeni değerlendirme oluşturur
+- `PUT /api/Reviews/{id}` - Değerlendirmeyi günceller
+- `DELETE /api/Reviews/{id}` - Değerlendirmeyi siler
 
-Swagger arayüzü üzerinden tüm API endpointlerini interaktif olarak test edebilirsiniz.
+### Tags
+- `GET /api/Tags` - Tüm etiketleri listeler
+- `GET /api/Tags/{id}` - Belirli bir etiketi getirir
+- `POST /api/Tags` - Yeni etiket oluşturur
+- `PUT /api/Tags/{id}` - Etiketi günceller
+- `DELETE /api/Tags/{id}` - Etiketi siler
 
-## Test Çalıştırma Komutları
+### Search
+- `GET /api/Search` - Arama geçmişini listeler
+- `GET /api/Search/query?q={term}` - İçeriklerde arama yapar
+- `POST /api/Search` - Arama kaydı oluşturur
+- `PUT /api/Search/{id}` - Arama kaydını günceller
+- `DELETE /api/Search/{id}` - Arama kaydını siler
 
-Testleri çalıştırmak için proje kök dizininde aşağıdaki komutu kullanın:
+## Dokümantasyon
+
+Swagger UI üzerinden API dokümantasyonuna ve test arayüzüne erişebilirsiniz:
+
+[http://localhost:5137/swagger](http://localhost:5137/swagger)
+
+## Testler
+
+Testleri çalıştırmak için proje ana dizininde şu komutu kullanın:
 
 ```bash
 dotnet test
 ```
-
-## CI/CD Durumu
-
-![Build Status](https://github.com/username/repo/actions/workflows/dotnet.yml/badge.svg)
-![Code Coverage](https://codecov.io/gh/username/repo/branch/main/graph/badge.svg)
-
