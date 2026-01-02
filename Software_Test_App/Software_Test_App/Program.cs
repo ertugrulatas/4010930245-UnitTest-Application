@@ -3,14 +3,11 @@ using Software_Test_App.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Database Configuration - Use InMemory for testing, SQLite for production
+// test ve production icin db ayari
 if (builder.Environment.EnvironmentName == "Testing")
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
@@ -24,7 +21,6 @@ else
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -32,12 +28,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
 
-// Make Program class accessible for testing
 public partial class Program { }

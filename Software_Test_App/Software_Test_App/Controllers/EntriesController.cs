@@ -38,7 +38,7 @@ namespace Software_Test_App.Controllers
         [HttpPost]
         public async Task<ActionResult<Entry>> PostEntry(Entry entry)
         {
-            // Relationship check
+            // user kontrolu
             if (!await _context.Users.AnyAsync(u => u.Id == entry.UserId))
             {
                 return BadRequest("Invalid UserId.");

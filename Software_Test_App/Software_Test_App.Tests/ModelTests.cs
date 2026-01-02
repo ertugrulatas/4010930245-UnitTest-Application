@@ -8,7 +8,6 @@ namespace Software_Test_App.Tests
         [Fact]
         public void User_SetProperties_ReturnsCorrectValues()
         {
-            // Arrange
             var user = new User
             {
                 Id = 1,
@@ -16,7 +15,6 @@ namespace Software_Test_App.Tests
                 Email = "test@example.com"
             };
 
-            // Act & Assert
             Assert.Equal(1, user.Id);
             Assert.Equal("testuser", user.Username);
             Assert.Equal("test@example.com", user.Email);
@@ -25,7 +23,6 @@ namespace Software_Test_App.Tests
         [Fact]
         public void Review_SetProperties_ReturnsCorrectValues()
         {
-            // Arrange
             var review = new Review
             {
                 Id = 1,
@@ -34,7 +31,6 @@ namespace Software_Test_App.Tests
                 EntryId = 10
             };
 
-            // Act & Assert
             Assert.Equal(1, review.Id);
             Assert.Equal("Great entry!", review.Text);
             Assert.Equal(5, review.Rating);
@@ -44,7 +40,6 @@ namespace Software_Test_App.Tests
         [Fact]
         public void Tag_SetProperties_ReturnsCorrectValues()
         {
-            // Arrange
             var tag = new Tag
             {
                 Id = 1,
@@ -52,7 +47,6 @@ namespace Software_Test_App.Tests
                 EntryId = 20
             };
 
-            // Act & Assert
             Assert.Equal(1, tag.Id);
             Assert.Equal("CSharp", tag.Name);
             Assert.Equal(20, tag.EntryId);

@@ -1,22 +1,18 @@
 # Software Test App
 
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-blue) ![Codecov](https://img.shields.io/badge/Codecov-Coverage-brightgreen)
+## Proje Hakkında
 
-## Proje Açıklaması
+Yazılım Kalite Güvence Testi dersi için hazırlanmış bir .NET Core Web API projesi. Temel CRUD işlemleri ve test yapıları içeriyor.
 
-Bu proje, Yazılım Kalite Güvence Testi dersi kapsamında geliştirilmiş bir .NET Core Web API uygulamasıdır. Proje, çeşitli veri modelleri üzerinde CRUD işlemleri gerçekleştiren ve test edilebilir bir yapı sunan bir backend servisidir.
+### Teknolojiler
 
-### Kullanılan Teknolojiler
-
-- C#
-- ASP.NET Core Web API
+- C# / ASP.NET Core Web API
 - Entity Framework Core
-- SQLite Veritabanı
-- Swagger UI
+- SQLite
+- Swagger
+- xUnit
 
-## Kurulum Talimatları
-
-Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
+## Kurulum
 
 1.  Repoyu klonlayın:
     ```bash
@@ -40,9 +36,7 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
     dotnet run
     ```
 
-## API Endpointleri
-
-Aşağıda uygulamada bulunan temel API endpointleri listelenmiştir:
+## API Endpoints
 
 ### Users
 - `GET /api/Users` - Tüm kullanıcıları listeler
@@ -79,26 +73,22 @@ Aşağıda uygulamada bulunan temel API endpointleri listelenmiştir:
 - `PUT /api/Search/{id}` - Arama kaydını günceller
 - `DELETE /api/Search/{id}` - Arama kaydını siler
 
-## Dokümantasyon
+## Swagger
 
-Swagger UI üzerinden API dokümantasyonuna ve test arayüzüne erişebilirsiniz:
-
-[https://localhost:7105/swagger](https://localhost:7105/swagger)
-[http://localhost:5137/swagger](http://localhost:5137/swagger)
+https://localhost:7105/swagger
+http://localhost:5137/swagger
 
 ## Testler
-
-Testleri çalıştırmak için proje ana dizininde şu komutu kullanın:
 
 ```bash
 dotnet test
 ```
 
-## Birim Test Özeti
+## Birim Testler
 
-BirimTest.md dosyasındaki kurallara göre **21 kapsamlı birim test** oluşturulmuştur.
+BirimTest.md dosyasındaki kurallara göre 21 birim test oluşturuldu.
 
-### ✅ Oluşturulan Testler
+### Testler
 
 #### Model Testleri (ModelTests.cs)
 1. **User_SetProperties_ReturnsCorrectValues** - User model property testi
@@ -131,55 +121,30 @@ BirimTest.md dosyasındaki kurallara göre **21 kapsamlı birim test** oluşturu
 20. **PostReview_ReturnsBadRequest_WhenEntryDoesNotExist** - Geçersiz EntryId ile Review ekleme (negatif)
 21. **DeleteReview_RemovesReview** - Review silme testi (pozitif)
 
-### 📋 Karşılanan Gereksinimler
+### Test Kapsami
 
-✅ **En az 15 farklı birim test** (21 test oluşturuldu)  
-✅ **İş mantığı fonksiyonları testi** (Controller business logic)  
-✅ **Veri doğrulama fonksiyonları testi** (UserId, EntryId validation)  
-✅ **Model/Entity metodları testi** (Entry, User, Review, Tag)  
-✅ **Minimum %60 kod coverage** (Controllers ve Models kapsandı)  
-✅ **Anlamlı test adları** (Her test açıklayıcı isimlere sahip)  
-✅ **Pozitif ve negatif senaryolar** (Başarılı ve hata durumları test edildi)
+- Model Testleri: 4 test
+- Controller Testleri: 17 test
+  - GET, POST, DELETE islemleri
+  - Foreign Key validation
 
-### 🎯 Test Kapsamı
-
-- **Model Testleri:** 4 test - Tüm model property'lerinin doğru set/get edilmesi
-- **Controller Testleri:** 17 test
-  - GET işlemleri (var/yok senaryoları)
-  - POST işlemleri (geçerli/geçersiz veri senaryoları)
-  - DELETE işlemleri (var/yok senaryoları)
-  - İlişki kontrolü (Foreign Key validation)
-
-### 🔧 Teknik Detaylar
-
-**Kullanılan Teknolojiler:**
+### Kullanilan Kutuphaneler
 - xUnit (2.9.3)
 - Microsoft.EntityFrameworkCore.InMemory (10.0.1)
 - Microsoft.NET.Test.Sdk (17.14.1)
 
-**Test Mimarisi:**
-- InMemory Database ile test isolation
-- Her test için benzersiz database instance (Guid bazlı)
-- Arrange-Act-Assert pattern kullanımı
+Test Dosyalari:
+- ModelTests.cs
+- EntryTests.cs
+- EntriesControllerTests.cs
+- UsersControllerTests.cs
+- ReviewsControllerTests.cs
 
-**Test Dosyaları:**
-- `Software_Test_App.Tests/ModelTests.cs`
-- `Software_Test_App.Tests/EntryTests.cs`
-- `Software_Test_App.Tests/EntriesControllerTests.cs`
-- `Software_Test_App.Tests/UsersControllerTests.cs`
-- `Software_Test_App.Tests/ReviewsControllerTests.cs`
+## Entegrasyon Testleri
 
-Birim testlerini çalıştırmak için:
+EntegrasyonTest.md kurallarina göre 15 entegrasyon testi var.
 
-```bash
-dotnet test
-```
-
-## Entegrasyon Test Özeti
-
-EntegrasyonTest.md dosyasındaki kurallara göre **15 kapsamlı entegrasyon testi** oluşturulmuştur.
-
-### ✅ Oluşturulan Testler
+### Test Listesi
 
 1. **GetUsers_ReturnsAllUsers_IntegrationTest** - GET endpoint testi
 2. **PostUser_CreatesNewUser_IntegrationTest** - POST endpoint testi  
@@ -197,147 +162,46 @@ EntegrasyonTest.md dosyasındaki kurallara göre **15 kapsamlı entegrasyon test
 14. **PostTag_ReturnsBadRequest_WhenInvalidEntryId_IntegrationTest** - Tag 400 hata testi
 15. **GetUser_ReturnsNotFound_WhenDoesNotExist_IntegrationTest** - User 404 hata testi
 
-### 📋 Karşılanan Gereksinimler
+### Kapsam
 
-✅ **En az 10 entegrasyon testi** (15 test oluşturuldu)  
-✅ **API endpoint'leri testi** (HTTP request/response)  
-✅ **Veritabanı işlemleri** (CRUD operasyonları)  
-✅ **İlişkili kaynaklar arası işlemler** (User-Entry, Entry-Review, Entry-Tag)  
-✅ **Hata durumları** (404, 400 testleri)  
-✅ **Her HTTP metodu test edildi** (GET, POST, PUT, DELETE)  
-✅ **Test veritabanı kullanımı** (InMemory Database ile test isolation)
+- API endpoint testleri (GET, POST, PUT, DELETE)
+- Veritabani CRUD islemleri
+- Iliskili tablolar arasi islemler (User-Entry, Entry-Review, Entry-Tag)
+- Hata durumlari (404, 400)
 
-### 🎯 Puanlama Kriterleri
-
-- **API endpoint testlerinin kapsamlılığı:** 
-  - Tüm HTTP metodları (GET, POST, PUT, DELETE) test edildi
-  - Başarılı ve hata senaryoları kapsandı
-  
-- **Veritabanı entegrasyon testleri:** 
-  - CRUD işlemleri kapsamlı şekilde test edildi
-  - İlişkili tablolar arası işlemler test edildi
-  
-- **Test veri yönetimi (setup/teardown):** 
-  - Her test için izole InMemory Database kullanıldı
-  - SeedDatabase helper metodu ile veri yönetimi sağlandı
-
-
-
-### 🔧 Teknik Detaylar
-
-**Kullanılan Teknolojiler:**
+### Kullanilan
 - Microsoft.AspNetCore.Mvc.Testing (10.0.1)
 - Microsoft.EntityFrameworkCore.InMemory (10.0.1)
 - xUnit (2.9.3)
 
-**Test Mimarisi:**
-- `CustomWebApplicationFactory` sınıfı ile test ortamı konfigürasyonu
-- InMemory Database ile test isolation
-- Environment-based database configuration (Testing/Production)
-
-**Test Dosyası:**
-`Software_Test_App.Tests/IntegrationTests.cs`
-
-
-Entegrasyon testlerini çalıştırmak için:
+Test Dosyasi: `IntegrationTests.cs`
 
 ```bash
 dotnet test --filter "FullyQualifiedName~IntegrationTests"
 ```
 
-## Sistem Test Özeti
+## Sistem Testleri
 
-sistemTestleri.md dosyasındaki kurallara göre **8 kapsamlı uçtan uca sistem testi** oluşturulmuştur.
+sistemTestleri.md kurallarina göre 8 uctan uca sistem testi var.
 
-### ✅ Oluşturulan Test Senaryoları
+### Test Senaryolari
 
-1. **CompleteUserJourney_CreateUser_AddEntry_AddReview_AddTag_SystemTest**
-   - Kullanıcı kaydı → Entry oluşturma → Review ekleme → Tag ekleme
-   - Tam bir kullanıcı yolculuğunu simüle eder
-   
-2. **ContentManagement_List_View_Update_Delete_SystemTest**
-   - İçerik listeleme → Detay görüntüleme → Güncelleme → Silme
-   - İçerik yönetimi iş akışını test eder
+1. CompleteUserJourney - Kullanıcı kaydı, Entry, Review, Tag ekleme
+2. ContentManagement - Listeleme, görüntüleme, güncelleme, silme
+3. SearchWorkflow - Entry oluşturma, arama yapma, sonuçları görüntüleme
+4. MultiUserInteraction - Çoklu kullanıcı, çapraz review'lar
+5. ComplexBusinessScenario - Kompleks iş akışları
+6. ErrorHandling - Geçersiz verilerle hata yönetimi
+7. BulkDataProcessing - Toplu veri işleme
+8. DataIntegrity - İlişkili kaynaklar, veri tutarlılığı
 
-3. **SearchWorkflow_CreateEntries_PerformSearch_ViewResults_SystemTest**
-   - Entry oluşturma → Arama yapma → Sonuçları görüntüleme → Arama geçmişi
-   - Arama fonksiyonalitesinin tam döngüsünü test eder
+### Kullanilan
+- Microsoft.AspNetCore.Mvc.Testing
+- Microsoft.EntityFrameworkCore.InMemory
+- xUnit
 
-4. **MultiUserInteraction_MultipleUsers_CrossReviews_SystemTest**
-   - Çoklu kullanıcı oluşturma → Her kullanıcı entry ekler → Çapraz review'lar
-   - Birden fazla kullanıcının sistem üzerindeki etkileşimlerini test eder
-
-5. **ComplexBusinessScenario_FullWorkflow_WithModifications_SystemTest**
-   - Entry oluştur → Çoklu review → Tag ekleme → Güncelleme → Review silme
-   - Karmaşık iş senaryolarını ve modifikasyonları test eder
-
-6. **ErrorHandling_InvalidOperations_ProperErrorCodes_SystemTest**
-   - Geçersiz verilerle işlemler → Doğru hata kodlarının dönmesi
-   - Sistem hata yönetimini ve hata kodlarını test eder
-
-7. **BulkDataProcessing_CreateMultiple_ListAndFilter_SystemTest**
-   - Toplu kullanıcı oluşturma → Her kullanıcı için çoklu entry → Tag ekleme
-   - Sistemin toplu veri işleme kabiliyetini test eder
-
-8. **DataIntegrity_RelatedResources_ConsistencyCheck_SystemTest**
-   - İlişkili kaynaklarla işlemler → Veri tutarlılığı kontrolü
-   - Veri bütünlüğü ve ilişkisel tutarlılığı test eder
-
-### 📋 Karşılanan Gereksinimler
-
-✅ **En az 5 farklı senaryo** (8 test senaryosu oluşturuldu)  
-✅ **Gerçek kullanım durumları simülasyonu** (Her senaryo gerçek kullanıcı davranışlarını yansıtır)  
-✅ **Bağımsız test çalışması** (Her test kendi verilerini oluşturur ve bağımsızdır)  
-✅ **Kompleks iş akışları** (Birden fazla kaynakla ilgili senaryolar test edildi)  
-✅ **Uçtan uca test** (Sistemin bir bütün olarak çalışması doğrulandı)
-
-### 🎯 Test Kapsamı
-
-**Senaryo Tipleri:**
-- **Kullanıcı Yolculukları:** Tam kullanıcı iş akışları (kayıt, içerik oluşturma, etkileşim)
-- **CRUD İşlemleri:** Create, Read, Update, Delete operasyonlarının entegrasyonu
-- **Arama ve Keşif:** Search API'sinin tam döngü testi
-- **Çoklu Kullanıcı Etkileşimleri:** Birden fazla kullanıcının sistem kullanımı
-- **Hata Senaryoları:** Geçersiz girişler ve hata yönetimi
-- **Veri Bütünlüğü:** İlişkisel veri tutarlılığı ve bütünlük kontrolleri
-- **Toplu İşlemler:** Çoklu kaynak oluşturma ve yönetimi
-
-**Kapsanan İş Akışları:**
-- User → Entry → Review → Tag (tam döngü)
-- Entry CRUD operasyonları
-- Search functionality (query + history)
-- Multi-user interactions
-- Complex business scenarios
-- Error handling paths
-- Bulk data operations
-- Data integrity checks
-
-### 🔧 Teknik Detaylar
-
-**Test Özellikleri:**
-- Her test senaryosu tamamen bağımsızdır
-- Her test kendi test verilerini oluşturur
-- InMemory Database ile test izolasyonu sağlanır
-- Gerçek HTTP istekleri ile API testleri yapılır
-- Tüm CRUD operasyonları ve ilişkiler test edilir
-
-**Kullanılan Teknolojiler:**
-- Microsoft.AspNetCore.Mvc.Testing (10.0.1)
-- Microsoft.EntityFrameworkCore.InMemory (10.0.1)
-- xUnit (2.9.3)
-- HttpClient (JSON API testing)
-
-**Test Dosyası:**
-`Software_Test_App.Tests/SystemTests.cs`
-
-Sistem testlerini çalıştırmak için:
+Test Dosyasi: `SystemTests.cs`
 
 ```bash
 dotnet test --filter "FullyQualifiedName~SystemTests"
-```
-
-Tüm testleri çalıştırmak için:
-
-```bash
-dotnet test
 ```

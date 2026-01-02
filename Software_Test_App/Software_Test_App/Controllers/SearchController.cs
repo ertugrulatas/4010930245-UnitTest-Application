@@ -16,14 +16,12 @@ namespace Software_Test_App.Controllers
             _context = context;
         }
 
-        // GET: api/Search
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SearchLog>>> GetSearchLogs()
         {
             return await _context.SearchLogs.ToListAsync();
         }
 
-        // GET: api/Search/5
         [HttpGet("{id}")]
         public async Task<ActionResult<SearchLog>> GetSearchLog(int id)
         {
@@ -37,7 +35,6 @@ namespace Software_Test_App.Controllers
             return searchLog;
         }
 
-        // GET: api/Search/query?q=something
         [HttpGet("query")]
         public async Task<ActionResult<IEnumerable<Entry>>> Search([FromQuery] string q)
         {
@@ -50,14 +47,12 @@ namespace Software_Test_App.Controllers
                 .Where(e => e.Title.Contains(q) || e.Content.Contains(q))
                 .ToListAsync();
 
-            // Log the search
             _context.SearchLogs.Add(new SearchLog { Query = q });
             await _context.SaveChangesAsync();
 
             return Ok(results);
         }
 
-        // POST: api/Search
         [HttpPost]
         public async Task<ActionResult<SearchLog>> PostSearchLog(SearchLog searchLog)
         {
@@ -67,7 +62,6 @@ namespace Software_Test_App.Controllers
             return CreatedAtAction(nameof(GetSearchLog), new { id = searchLog.Id }, searchLog);
         }
 
-        // PUT: api/Search/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSearchLog(int id, SearchLog searchLog)
         {
@@ -97,7 +91,6 @@ namespace Software_Test_App.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Search/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSearchLog(int id)
         {

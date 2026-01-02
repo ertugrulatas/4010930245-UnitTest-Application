@@ -8,7 +8,6 @@ namespace Software_Test_App.Tests
         [Fact]
         public void Entry_SetProperties_ReturnsCorrectValues()
         {
-            // Arrange
             var entry = new Entry
             {
                 Id = 1,
@@ -17,7 +16,6 @@ namespace Software_Test_App.Tests
                 UserId = 10
             };
 
-            // Act & Assert
             Assert.Equal(1, entry.Id);
             Assert.Equal("Test Entry", entry.Title);
             Assert.Equal("Test Content", entry.Content);
