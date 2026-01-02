@@ -417,3 +417,8 @@ FodyWeavers.xsd
 *.msm
 *.msp
 /Software_Test_App/Software_Test_App/Rules
+/Software_Test_App/CODECOV_SETUP_GUIDE.md
+/Software_Test_App/EXPECTED_RESULTS.md
+/Software_Test_App/IMPLEMENTATION_SUMMARY.md
+/Software_Test_App/KURULUM_TAMAMLANDI.md
+/Software_Test_App/QUICK_START.md

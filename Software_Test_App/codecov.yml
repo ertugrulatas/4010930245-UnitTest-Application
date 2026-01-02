@@ -1,0 +1,55 @@
+# Codecov Configuration
+# https://docs.codecov.com/docs/codecov-yaml
+
+# Coverage settings
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+        base: auto
+    patch:
+      default:
+        target: auto
+        threshold: 1%
+
+# Comment settings for Pull Requests
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: false
+  require_head: true
+
+# Ignore paths (exclude from coverage)
+ignore:
+  - "Software_Test_App/Migrations/**"
+  - "Software_Test_App.Tests/**"
+  - "**/bin/**"
+  - "**/obj/**"
+  - "**/*.Designer.cs"
+  - "**/Program.cs"  # Minimal API bootstrap file
+
+# Flags for different test types
+flags:
+  unit:
+    paths:
+      - Software_Test_App/Models/
+      - Software_Test_App/Controllers/
+  integration:
+    paths:
+      - Software_Test_App/
+  system:
+    paths:
+      - Software_Test_App/
+
+# Coverage precision
+precision: 2
+
+# Round coverage
+round: down
+
+# Coverage range (for coloring)
+range: "60...90"
+

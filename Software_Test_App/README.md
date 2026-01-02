@@ -1,5 +1,10 @@
 # Software Test App
 
+[![CI/CD Pipeline](https://github.com/ertugrulatas/4010930245-UnitTest-Application/actions/workflows/ci.yml/badge.svg)](https://github.com/ertugrulatas/4010930245-UnitTest-Application/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application/branch/main/graph/badge.svg)](https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application)
+[![.NET Version](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 ## Proje Hakkında
 
 Yazılım Kalite Güvence Testi dersi için hazırlanmış bir .NET Core Web API projesi. Temel CRUD işlemleri ve test yapıları içeriyor.
@@ -11,6 +16,24 @@ Yazılım Kalite Güvence Testi dersi için hazırlanmış bir .NET Core Web API
 - SQLite
 - Swagger
 - xUnit
+
+## CI/CD ve Code Coverage
+
+### GitHub Actions CI/CD
+Bu proje GitHub Actions kullanarak otomatik entegrasyon ve dağıtım süreçlerine sahiptir:
+- ✅ Her `push` ve `pull request` işleminde otomatik test çalıştırma
+- ✅ Tüm birim, entegrasyon ve sistem testlerinin otomatik yürütülmesi
+- ✅ Test sonuçlarının action loglarında detaylı raporlanması
+- ✅ Build ve test başarısını gösteren status badge
+
+### Code Coverage
+Proje, kod kapsama raporlaması için Codecov entegrasyonuna sahiptir:
+- 📊 Her commit için otomatik coverage raporu
+- 📈 README'de görünen coverage badge
+- 🔍 Detaylı satır satır coverage analizi
+- 📉 Coverage trend takibi
+
+Coverage raporlarını görmek için: https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application
 
 ## Kurulum
 
@@ -80,8 +103,22 @@ http://localhost:5137/swagger
 
 ## Testler
 
+### Tüm Testleri Çalıştırma
 ```bash
 dotnet test
+```
+
+### Code Coverage ile Test Çalıştırma
+```bash
+# Coverage raporu ile tüm testleri çalıştır
+dotnet test --collect:"XPlat Code Coverage"
+
+# Detaylı coverage raporu oluştur
+dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults
+
+# Coverage raporunu HTML formatında görmek için (reportgenerator gerekli)
+dotnet tool install --global dotnet-reportgenerator-globaltool
+reportgenerator -reports:"./TestResults/**/coverage.cobertura.xml" -targetdir:"./CoverageReport" -reporttypes:Html
 ```
 
 ## Birim Testler
