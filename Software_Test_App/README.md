@@ -7,7 +7,7 @@
 
 ## Proje Hakkında
 
-Yazılım Kalite Güvence Testi dersi için hazırlanmış bir .NET Core Web API projesi. Temel CRUD işlemleri ve test yapıları içeriyor.
+Yazılım Kalite Güvence Testi dersi için hazırlanmış bir .NET Core Web API projesi. Temel CRUD işlemleri ve test yapıları içerir.
 
 ### Teknolojiler
 
