@@ -83,6 +83,7 @@ Aşağıda uygulamada bulunan temel API endpointleri listelenmiştir:
 
 Swagger UI üzerinden API dokümantasyonuna ve test arayüzüne erişebilirsiniz:
 
+[https://localhost:7105/swagger](https://localhost:7105/swagger)
 [http://localhost:5137/swagger](http://localhost:5137/swagger)
 
 ## Testler
