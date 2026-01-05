@@ -1,9 +1,10 @@
 # Software Test App
 
-[![CI/CD Pipeline](https://github.com/ertugrulatas/4010930245-UnitTest-Application/actions/workflows/ci.yml/badge.svg)](https://github.com/ertugrulatas/4010930245-UnitTest-Application/actions/workflows/ci.yml)
+[![CI/CD Pipeline](https://github.com/ertugrulatas/4010930245-UnitTest-Application/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ertugrulatas/4010930245-UnitTest-Application/actions/workflows/dotnet.yml)
 [![codecov](https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application/branch/main/graph/badge.svg)](https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application)
-[![.NET Version](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
+[![.NET Version](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Coverage](https://img.shields.io/badge/Coverage-73.87%25-green.svg)](https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application)
 
 ## Proje Hakkında
 
@@ -11,11 +12,12 @@ Yazılım Kalite Güvence Testi dersi için hazırlanmış bir .NET Core Web API
 
 ### Teknolojiler
 
-- C# / ASP.NET Core Web API
-- Entity Framework Core
+- C# / ASP.NET Core Web API (.NET 8.0 LTS)
+- Entity Framework Core 8.0
 - SQLite
 - Swagger
 - xUnit
+- Coverlet (Code Coverage)
 
 ## CI/CD ve Code Coverage
 
@@ -32,8 +34,11 @@ Proje, kod kapsama raporlaması için Codecov entegrasyonuna sahiptir:
 - 📈 README'de görünen coverage badge
 - 🔍 Detaylı satır satır coverage analizi
 - 📉 Coverage trend takibi
+- ✅ **Mevcut Coverage: 73.87% Line | 50% Branch | 86.88% Method**
 
 Coverage raporlarını görmek için: https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application
+
+**Codecov Kurulum:** [CODECOV_KURULUM.md](CODECOV_KURULUM.md) dosyasına bakın
 
 ## Kurulum
 
@@ -110,15 +115,17 @@ dotnet test
 
 ### Code Coverage ile Test Çalıştırma
 ```bash
-# Coverage raporu ile tüm testleri çalıştır
-dotnet test --collect:"XPlat Code Coverage"
+# Coverage raporu ile tüm testleri çalıştır (OpenCover format)
+cd Software_Test_App.Tests
+dotnet test --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage/
 
-# Detaylı coverage raporu oluştur
-dotnet test --collect:"XPlat Code Coverage" --results-directory ./TestResults
+# HTML raporu oluştur (opsiyonel)
+dotnet tool install -g dotnet-reportgenerator-globaltool
+reportgenerator -reports:"./coverage/coverage.opencover.xml" -targetdir:"./coveragereport" -reporttypes:Html
+start coveragereport/index.html
 
-# Coverage raporunu HTML formatında görmek için (reportgenerator gerekli)
-dotnet tool install --global dotnet-reportgenerator-globaltool
-reportgenerator -reports:"./TestResults/**/coverage.cobertura.xml" -targetdir:"./CoverageReport" -reporttypes:Html
+# Alternatif: Cobertura format
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./coverage/
 ```
 
 ## Birim Testler
@@ -167,8 +174,10 @@ BirimTest.md dosyasındaki kurallara göre 21 birim test oluşturuldu.
 
 ### Kullanilan Kutuphaneler
 - xUnit (2.9.3)
-- Microsoft.EntityFrameworkCore.InMemory (10.0.1)
-- Microsoft.NET.Test.Sdk (17.14.1)
+- Microsoft.EntityFrameworkCore.InMemory (8.0.11)
+- Microsoft.NET.Test.Sdk (17.11.1)
+- coverlet.collector (6.0.4)
+- coverlet.msbuild (6.0.4)
 
 Test Dosyalari:
 - ModelTests.cs
@@ -207,8 +216,8 @@ EntegrasyonTest.md kurallarina göre 15 entegrasyon testi var.
 - Hata durumlari (404, 400)
 
 ### Kullanilan
-- Microsoft.AspNetCore.Mvc.Testing (10.0.1)
-- Microsoft.EntityFrameworkCore.InMemory (10.0.1)
+- Microsoft.AspNetCore.Mvc.Testing (8.0.11)
+- Microsoft.EntityFrameworkCore.InMemory (8.0.11)
 - xUnit (2.9.3)
 
 Test Dosyasi: `IntegrationTests.cs`
