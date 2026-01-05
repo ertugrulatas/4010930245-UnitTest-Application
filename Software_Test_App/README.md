@@ -38,8 +38,6 @@ Proje, kod kapsama raporlaması için Codecov entegrasyonuna sahiptir:
 
 Coverage raporlarını görmek için: https://codecov.io/gh/ertugrulatas/4010930245-UnitTest-Application
 
-**Codecov Kurulum:** [CODECOV_KURULUM.md](CODECOV_KURULUM.md) dosyasına bakın
-
 ## Kurulum
 
 1.  Repoyu klonlayın:
